@@ -1,3 +1,5 @@
 node_modules
 tslint.json
 package-lock.json
+sql_tables/tables.sql
+sql_tables/p0Tables.sql
