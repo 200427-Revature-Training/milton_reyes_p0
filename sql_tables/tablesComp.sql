@@ -82,7 +82,6 @@ CREATE TABLE public.brands_retailers (
 CREATE TABLE public.food_groceries (
 	food varchar(40) NOT NULL,
 	upc_food varchar(52) UNIQUE NOT NULL,
-	weight numeric(6,2) NULL,
 	notes varchar(40) NULL,
 	CONSTRAINT food_groceries_pkey PRIMARY KEY (food,upc_food)
 );
@@ -91,6 +90,7 @@ CREATE TABLE public.foods_brands (
 	brand_id int4 NOT NULL,
 	upc_food varchar(52) NOT NULL,
 	weight numeric(6,2) NULL,
+	measure_unit varchar(6),
 	CONSTRAINT foods_brands_pkey PRIMARY KEY (brand_id,upc_food),
 	FOREIGN KEY (brand_id) REFERENCES brands (id),
 	--FOREIGN KEY (upc,food) REFERENCES food_groceries (food_groceries_pkey)
