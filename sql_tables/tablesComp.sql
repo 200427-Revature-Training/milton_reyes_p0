@@ -138,12 +138,3 @@ CREATE TABLE public.foods_categories (
 
 
 
-
-
-
-
-
-
-
-
-
