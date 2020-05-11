@@ -1,21 +1,22 @@
 
-abstract class Recipe {
+export class Recipe {
     id: number;
-    measurement: number;
-    temperature: number;
-    time: number;
+    recipe: string;
 
-    name: string;
-    ingredient: string;
-    cookingware: string;
-
-    constructor(id: number,name: string,ingredient: string,measurement: number,temperature: number,time: number,cookingware: string) {
+    constructor(id: number,recipe:string) {
         this.id = id;
-        this.name = name;
-        this.ingredient = ingredient;
-        this.measurement = measurement;
-        this.temperature = temperature;
-        this.time = time;
-        this.cookingware = cookingware;
+        this.recipe = recipe;
     }
+
+    static from(obj: RecipeRow): Recipe {
+        const recipe = new Recipe(
+            obj.id,obj.recipe
+        );
+        return recipe;
+    }
+}
+
+export interface RecipeRow {
+    id: number;
+    recipe: string;
 }

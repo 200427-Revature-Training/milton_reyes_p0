@@ -96,7 +96,7 @@ CREATE TABLE public.foods_brands (
 	--FOREIGN KEY (upc,food) REFERENCES food_groceries (food_groceries_pkey)
 	FOREIGN KEY (upc_food) REFERENCES food_groceries (upc_food)
 );
-
+-- need to alter this table to add measure_unit
 CREATE TABLE public.foods_recipes (
 	recipe_id int4 NOT NULL,
 	upc_food varchar(52) NOT NULL,
