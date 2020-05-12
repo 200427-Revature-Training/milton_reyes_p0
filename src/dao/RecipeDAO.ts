@@ -1,5 +1,5 @@
-interface RecipeDAO {
-    getAllRecipes(): void;
-    saveRecipe(): Recipe;
-    deleteRecipe(): Recipe;
-}
+//interface RecipeDAO {
+//    getAllRecipes(): void;
+//    saveRecipe(): Recipe;
+//    deleteRecipe(): Recipe;
+//}
