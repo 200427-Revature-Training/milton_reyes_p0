@@ -1,14 +1,16 @@
 export class FoodRecipe {
     recipeId: number;
     upcFood: string;
-	measurement: number;
+    measurement: number;
+    measureUnit: string;
 	notes: string;
     instructions: string;
 
-    constructor(recipeId: number,upcFood: string,measurement: number,notes: string,instructions: string){
+    constructor(recipeId: number,upcFood: string,measurement: number,measureUnit: string,notes: string,instructions: string){
         this.recipeId = recipeId;
         this.upcFood = upcFood;
         this.measurement = measurement;
+        this.measureUnit = measureUnit;
         this.notes = notes;
         this.instructions = instructions;
     }
@@ -18,6 +20,7 @@ export class FoodRecipe {
             obj.recipeId,
             obj.upcFood,
             obj.measurement,
+            obj.measureUnit,
             obj.notes,
             obj.instructions
         );
@@ -28,7 +31,8 @@ export class FoodRecipe {
 export interface FoodRecipeRow {
     recipeId: number;
     upcFood: string;
-	measurement: number;
+    measurement: number;
+    measureUnit: string;
 	notes: string;
 	instructions: string;
 }

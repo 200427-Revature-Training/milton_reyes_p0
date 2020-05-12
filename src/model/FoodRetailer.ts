@@ -9,7 +9,14 @@ export class FoodRetailer {
 	    this.price = price;
     }
 
-    static from(obj:)
+    static from(obj:FoodRetailerRow): FoodRetailer {
+        const foodRetailer = new FoodRetailer(
+            obj.retailerId,
+            obj.upcFood,
+            obj.price
+        );
+        return foodRetailer;
+    }
 }
 
 export interface FoodRetailerRow {
