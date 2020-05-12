@@ -93,14 +93,14 @@ CREATE TABLE public.foods_brands (
 	measure_unit varchar(6),
 	CONSTRAINT foods_brands_pkey PRIMARY KEY (brand_id,upc_food),
 	FOREIGN KEY (brand_id) REFERENCES brands (id),
-	--FOREIGN KEY (upc,food) REFERENCES food_groceries (food_groceries_pkey)
 	FOREIGN KEY (upc_food) REFERENCES food_groceries (upc_food)
 );
--- need to alter this table to add measure_unit
+
 CREATE TABLE public.foods_recipes (
 	recipe_id int4 NOT NULL,
 	upc_food varchar(52) NOT NULL,
 	measurement numeric(6,2) NULL,
+	measure_unit varchar(6),
 	notes varchar(300) NULL,
 	instructions varchar(300) NULL,
 	CONSTRAINT foods_recipes_pkey PRIMARY KEY (recipe_id,upc_food),

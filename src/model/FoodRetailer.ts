@@ -8,6 +8,8 @@ export class FoodRetailer {
 	    this.upcFood = upcFood;
 	    this.price = price;
     }
+
+    static from(obj:)
 }
 
 export interface FoodRetailerRow {
