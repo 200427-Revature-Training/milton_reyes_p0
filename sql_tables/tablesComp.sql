@@ -138,3 +138,11 @@ CREATE TABLE public.foods_categories (
 
 
 
+CREATE ROLE node_app_role LOGIN PASSWORD '';
+
+GRANT SELECT, UPDATE, INSERT ON ALL TABLES IN SCHEMA public TO node_app_role;
+
+-- I needed to add this extra permission to the role in order to be able to insert into
+-- without it, if you have a serial column, inserting using a restricted role will produce
+-- permission denied on serial column because it is blocking permissions to nextval() on role
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO node_app_role;
