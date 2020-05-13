@@ -146,3 +146,34 @@ GRANT SELECT, UPDATE, INSERT ON ALL TABLES IN SCHEMA public TO node_app_role;
 -- without it, if you have a serial column, inserting using a restricted role will produce
 -- permission denied on serial column because it is blocking permissions to nextval() on role
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO node_app_role;
+
+
+
+
+-- query for json object
+-- will need another bracket for recipes available, will implement in a future far, far away
+
+SELECT 
+	categories.category
+	,fg.food
+	,brands.brand
+	,fg.notes
+	,foods_brands.weight, foods_brands.measure_unit
+	,foods_storages.date_purchased
+	,retailers.retailer
+	,foods_retailers.price
+	,storages.store AS "stored"
+	,foods_storages.quantity ,foods_storages.shelf_life
+FROM food_groceries fg 
+JOIN foods_categories ON fg.upc_food = foods_categories.upc_food 
+JOIN foods_brands ON fg.upc_food = foods_brands.upc_food 
+JOIN foods_retailers ON fg.upc_food = foods_retailers.upc_food 
+JOIN foods_storages ON fg.upc_food = foods_storages.upc_food 
+JOIN categories ON foods_categories.categories_id = categories.id 
+JOIN retailers ON foods_retailers.retailer_id = retailers.id 
+JOIN storages ON foods_storages.storages_id = storages.id
+JOIN brands ON foods_brands.brand_id = brands.id
+
+
+
+
