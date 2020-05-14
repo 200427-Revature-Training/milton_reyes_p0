@@ -2,7 +2,7 @@ import { db } from '../dao/db';
 import { Brand, BrandRow } from '../model/Brand';
 
  export function getAllBrands(): Promise<Brand[]> {
-     const sql = 'SELECT * FROM brands';
+     const sql = `SELECT * FROM brands`;
 
      return db.query<BrandRow>(sql, []).then(result => {
          const rows: BrandRow[] = result.rows;
@@ -15,7 +15,7 @@ import { Brand, BrandRow } from '../model/Brand';
  }
 
 export function getBrandById(id: number): Promise<Brand> {
-    const sql = 'SELECT * FROM brands WHERE id = $1';
+    const sql = `SELECT * FROM brands WHERE id = $1`;
 
     return db.query<BrandRow>(sql, [id])
         .then(result => result.rows.map(row => Brand.from(row))[0]);

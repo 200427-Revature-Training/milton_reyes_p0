@@ -1,8 +1,10 @@
 import express from 'express';
 //import bodyParser from 'body-parser';
 import { db } from './dao/db';
-import { brandRouter } from './router/brandRouter';
 import { indexRouter } from './router/indexRouter';
+import { brandRouter } from './router/brandRouter';
+import { categoryRouter } from './router/categoryRouter';
+
 
 const app = express();
 
@@ -21,6 +23,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 */
 app.use('', indexRouter);
 app.use('/brands', brandRouter);
+app.use('/categories', categoryRouter);
 
 process.on('unhandledRejection', () => {
     db.end().then(() => {
