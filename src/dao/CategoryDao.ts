@@ -1,4 +1,4 @@
-import { db } from './db';
+import { db } from '../dao/db';
 import { Category, CategoryRow } from '../model/Category';
 
 export function getAllCategories(): Promise<Category[]> {
@@ -24,7 +24,7 @@ export function getCategoryById(id: number): Promise<Category> {
 export function saveCategory(category: Category): Promise<Category> {
     const sql = `INSERT INTO categories (category) VALUES ($1) RETURNING *`;
 
-    return db.query<CategoryRow>(sql [category.category])
+    return db.query<CategoryRow>(sql, [category.category])
         .then(result => result.rows.map(row => Category.from(row))[0]);
 }
 

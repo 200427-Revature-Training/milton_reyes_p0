@@ -10,6 +10,7 @@ export function getCategoryById(id: number): Promise<Category> {
 }
 
 export function saveCategory(category: any): Promise<Category> {
+    
     console.log(category);
 
     const newCategory = new Category(undefined, category.category);
