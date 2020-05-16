@@ -1,3 +1,21 @@
+-- Added comment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- public.products definition
 
 -- Drop table
