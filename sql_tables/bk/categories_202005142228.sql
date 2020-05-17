@@ -8,10 +8,8 @@ INSERT INTO public.categories (category) VALUES
 ,('Meat')
 ,('Produce')
 ,('Cleaners')
-,('Paper')
-;
-INSERT INTO public.categories (category) VALUES 
-('Personal Care')
+,('Paper') 
+,('Personal Care')
 ,('Staple')
 ,('Junk')
 ,('Plant Milk')

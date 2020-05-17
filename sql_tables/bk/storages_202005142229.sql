@@ -1,4 +1,4 @@
-INSERT INTO public.storages (store) VALUES 
+INSERT INTO public.storages (storage) VALUES 
 ('Refrigerator')
 ,('Cupboard')
 ,('Pantry')

@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS public.food_groceries cascade;
 -- without compromising the rest of the related data
 CREATE TABLE public.categories (
 	id serial NOT NULL,
-	category varchar(40),
+	category varchar(40) unique not null,
 	CONSTRAINT categories_pkey PRIMARY KEY (id)
 );
 
@@ -68,7 +68,7 @@ CREATE TABLE public.brands (
 -- will need some extra love
 CREATE TABLE public.recipes (
 	id serial NOT NULL,
-	recipe varchar(40) NULL,
+	recipe varchar(40) unique not null,
 	CONSTRAINT recipes_pkey PRIMARY KEY (id)
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE public.recipes (
 -- individual retailers without touching related data
 CREATE TABLE public.retailers (
 	id serial NOT NULL,
-	retailer varchar(40),
+	retailer varchar(40) unique not null,
 	CONSTRAINT retailers_pkey PRIMARY KEY (id)
 );
 
@@ -84,7 +84,7 @@ CREATE TABLE public.retailers (
 -- more storage spaces without compromising related data
 CREATE TABLE public.storages (
 	id serial NOT NULL,
-	store varchar(40),
+	storage varchar(40) unique not null,
 	CONSTRAINT storages_pkey PRIMARY KEY (id)
 );
 
@@ -116,7 +116,7 @@ CREATE TABLE public.food_groceries (
 -- to convert to metric
 CREATE TABLE public.foods_brands (
 	brand_id int4 NOT NULL,
-	upc_food varchar(52) NOT NULL,
+	upc_food varchar(52) UNIQUE NOT NULL,
 	weight numeric(6,2) NULL,
 	measure_unit varchar(6),
 	CONSTRAINT foods_brands_pkey PRIMARY KEY (brand_id,upc_food),
@@ -145,7 +145,7 @@ CREATE TABLE public.foods_recipes (
 -- will probably implement a discount feature in a future
 CREATE TABLE public.foods_retailers (
 	retailer_id int4 NOT NULL,
-	upc_food varchar(52) NOT NULL,
+	upc_food varchar(52) UNIQUE NOT NULL,
 	price numeric(6,2) NULL,
 	CONSTRAINT foods_stores_pkey PRIMARY KEY (retailer_id,upc_food),
 	FOREIGN KEY (retailer_id) REFERENCES retailers (id),
@@ -159,7 +159,7 @@ CREATE TABLE public.foods_retailers (
 -- where should your grocery be put away
 CREATE TABLE public.foods_storages (
 	storages_id int4 NOT NULL,
-	upc_food varchar(52) NOT NULL,
+	upc_food varchar(52) UNIQUE NOT NULL,
 	quantity int4 NULL,
 	date_purchased date NULL,
 	shelf_life varchar(80) NULL,
@@ -174,7 +174,7 @@ CREATE TABLE public.foods_storages (
 -- retailer
 CREATE TABLE public.foods_categories (
 	categories_id int4 NOT NULL,
-	upc_food varchar(52) NOT NULL,
+	upc_food varchar(52) UNIQUE NOT NULL,
 	CONSTRAINT foods_categories_pkey PRIMARY KEY (categories_id,upc_food),
 	FOREIGN KEY (categories_id) REFERENCES categories (id),
 	FOREIGN KEY (upc_food) REFERENCES food_groceries (upc_food)
@@ -206,7 +206,7 @@ SELECT
 	,foods_storages.date_purchased
 	,retailers.retailer
 	,foods_retailers.price
-	,storages.store AS "stored"
+	,storages.storage
 	,foods_storages.quantity ,foods_storages.shelf_life
 FROM food_groceries fg 
 JOIN foods_categories ON fg.upc_food = foods_categories.upc_food 

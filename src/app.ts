@@ -4,6 +4,8 @@ import { db } from './dao/db';
 import { indexRouter } from './router/indexRouter';
 import { brandRouter } from './router/brandRouter';
 import { categoryRouter } from './router/categoryRouter';
+import { retailerRouter } from './router/retailerRouter';
+import { storageRouter } from './router/storageRouter';
 
 
 const app = express();
@@ -24,6 +26,8 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use('', indexRouter);
 app.use('/brands', brandRouter);
 app.use('/categories', categoryRouter);
+app.use('/retailers', retailerRouter);
+app.use('/storages', storageRouter);
 
 process.on('unhandledRejection', () => {
     db.end().then(() => {

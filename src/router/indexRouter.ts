@@ -10,3 +10,8 @@ indexRouter.get('', (request, response, next) => {
     })
 });
 
+indexRouter.get('/poststuff', (request, response, next) => {
+    response.sendFile('form.html', {
+        root: path.join(__dirname, '../../web')
+    })
+});
