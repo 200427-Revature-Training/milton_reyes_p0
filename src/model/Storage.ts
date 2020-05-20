@@ -1,19 +1,19 @@
 export class Storage {
     id: number;
-    store: string;
+    storage: string;
 
-    constructor(id:number,store:string) {
+    constructor(id:number,storage:string) {
         this.id = id;
-        this.store = store;
+        this.storage = storage;
     }
 
     static from(obj:StorageRow): Storage {
-        const storage = new Storage(obj.id,obj.store);
+        const storage = new Storage(obj.id,obj.storage);
         return storage;
     }
 }
 
 export interface StorageRow {
     id: number;
-    store: string;
+    storage: string;
 }

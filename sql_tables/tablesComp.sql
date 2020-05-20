@@ -198,26 +198,36 @@ GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO node_app_role;
 -- query for json object
 -- will need another bracket for recipes available, will implement in a future far, far away
 
-SELECT 
-	categories.category
-	,fg.food
-	,brands.brand
-	,fg.notes
-	,foods_brands.weight, foods_brands.measure_unit
-	,foods_storages.date_purchased
-	,retailers.retailer
-	,foods_retailers.price
-	,storages.storage
-	,foods_storages.quantity ,foods_storages.shelf_life
-FROM food_groceries fg 
-JOIN foods_categories ON fg.upc_food = foods_categories.upc_food 
-JOIN foods_brands ON fg.upc_food = foods_brands.upc_food 
-JOIN foods_retailers ON fg.upc_food = foods_retailers.upc_food 
-JOIN foods_storages ON fg.upc_food = foods_storages.upc_food 
-JOIN categories ON foods_categories.categories_id = categories.id 
-JOIN retailers ON foods_retailers.retailer_id = retailers.id 
-JOIN storages ON foods_storages.storages_id = storages.id
-JOIN brands ON foods_brands.brand_id = brands.id
+SELECT
+     categories.category
+     ,fg.food
+     ,brands.brand
+     ,fg.notes
+     ,foods_brands.weight, foods_brands.measure_unit
+     ,foods_storages.date_purchased
+     ,retailers.retailer
+     ,foods_retailers.price
+     ,storages.storage
+     ,foods_storages.quantity ,foods_storages.shelf_life
+ FROM food_groceries fg
+ LEFT JOIN foods_categories ON fg.upc_food = foods_categories.upc_food
+ LEFT JOIN foods_brands ON fg.upc_food = foods_brands.upc_food
+ LEFT JOIN foods_retailers ON fg.upc_food = foods_retailers.upc_food
+ LEFT JOIN foods_storages ON fg.upc_food = foods_storages.upc_food
+ LEFT JOIN categories ON foods_categories.categories_id = categories.id
+ LEFT JOIN retailers ON foods_retailers.retailer_id = retailers.id
+ LEFT JOIN storages ON foods_storages.storages_id = storages.id
+ LEFT JOIN brands ON foods_brands.brand_id = brands.id
+ 
+
+BEGIN;
+INSERT INTO food_groceries (food,upc_food,notes) VALUES ('Hummus','007096910136Hummus','With garlic');
+INSERT INTO foods_categories (categories_id ,upc_food ) VALUES (5,'007096910136Hummus');
+INSERT INTO foods_brands (brand_id ,upc_food ,weight ,measure_unit ) VALUES (8,'007096910136Hummus',0.0,'L');
+INSERT INTO foods_storages (storages_id ,upc_food ,date_purchased ,quantity ,shelf_life ) 
+VALUES (1,'007096910136Hummus','2020-01-01',1,'2 weeks');
+INSERT INTO foods_retailers (retailer_id ,upc_food ,price ) VALUES (1,'007096910136Hummus',3.14);
+COMMIT;
 
 
 

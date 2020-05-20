@@ -27,7 +27,6 @@ export function saveFoodGrocery(foodGrocery: any): Promise<FoodGrocery> {
     }
 }
 
-
 export function patchFoodGrocery(input: any): Promise<FoodGrocery> {
 
     const foodGrocery = new FoodGrocery(

@@ -13,7 +13,7 @@ export function saveStorage(storages: any): Promise<Storage> {
     
     console.log(storages);
 
-    const newStorage = new Storage(undefined, storages.store);
+    const newStorage = new Storage(undefined, storages.storage);
 
     if(storages.store) {
         return storagesDao.saveStorage(newStorage);
@@ -24,7 +24,7 @@ export function saveStorage(storages: any): Promise<Storage> {
 }
 
 export function patchStorage(input: any): Promise<Storage> {
-    const storages = new Storage(input.id, input.store);
+    const storages = new Storage(input.id, input.storage);
 
     if(!storages.id) {
         throw new Error('400');
