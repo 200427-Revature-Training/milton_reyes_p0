@@ -6,10 +6,11 @@ import { FoodGrocery, FoodGroceryRow } from '../model/FoodGrocery';
 
      return db.query<FoodGroceryRow>(sql, []).then(result => {
          const rows: FoodGroceryRow[] = result.rows;
-
+         console.log("----------Rows");
          console.log(rows);
 
          const foodGroceries: FoodGrocery[] = rows.map(row => FoodGrocery.from(row));
+         console.log("----------------foodGroceries");
          return foodGroceries;
      });
  }
@@ -25,7 +26,7 @@ export function saveFoodGrocery(foodGrocery: FoodGrocery): Promise<FoodGrocery> 
     const sql = `INSERT INTO food_groceries (food,upc_food,notes) VALUES ($1, $2, $3) RETURNING *`;
 
     return db.query<FoodGroceryRow>(sql, [
-        foodGrocery.food, foodGrocery.upc, foodGrocery.notes
+        foodGrocery.food, foodGrocery.upcFood, foodGrocery.notes
     ]).then(result => result.rows.map(row => FoodGrocery.from(row))[0]);
 }
 
@@ -33,7 +34,7 @@ export function patchFoodGrocery(foodGrocery: FoodGrocery): Promise<FoodGrocery>
 
     const sql = `UPDATE food_groceries SET food = COALESCE($1, food), notes = COALESCE($3, notes) WHERE upc_food = $2 RETURNING *`;
 
-    const params = [foodGrocery.food, foodGrocery.upc, foodGrocery.notes];
+    const params = [foodGrocery.food, foodGrocery.upcFood, foodGrocery.notes];
 
     return db.query<FoodGroceryRow>(sql, params)
         .then(result => result.rows.map(row => FoodGrocery.from(row))[0]);

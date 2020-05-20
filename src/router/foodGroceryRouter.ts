@@ -4,7 +4,11 @@ import * as foodGroceryService from '../service/foodGroceryService';
 export const foodGroceryRouter = express.Router();
 
 foodGroceryRouter.get('', (request, response, next) => {
+    //console.log("------------request");
+    //console.log(response);
     foodGroceryService.getAllFoodGroceries().then(foodGrocery => {
+        console.log("------------Get foodGrocery");
+        console.log(foodGrocery);
         response.json(foodGrocery);
         next();
     }).catch(err => {

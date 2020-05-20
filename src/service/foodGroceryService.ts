@@ -14,9 +14,9 @@ export function saveFoodGrocery(foodGrocery: any): Promise<FoodGrocery> {
     console.log(foodGrocery);
 
     const newFoodGrocery = new FoodGrocery(
-        foodGrocery.food, foodGrocery.upc, foodGrocery.notes);
+        foodGrocery.food, foodGrocery.upcFood, foodGrocery.notes);
 
-    if(foodGrocery.food && foodGrocery.upc) {
+    if(foodGrocery.food && foodGrocery.upcFood) {
         return foodGroceryDao.saveFoodGrocery(newFoodGrocery);
     } else {
         // TODO: We should fail here, probably issue some kind of 400
@@ -29,10 +29,10 @@ export function saveFoodGrocery(foodGrocery: any): Promise<FoodGrocery> {
 export function patchFoodGrocery(input: any): Promise<FoodGrocery> {
 
     const foodGrocery = new FoodGrocery(
-        input.food, input.upc, input.notes
+        input.food, input.upcFood, input.notes
     );
 
-    if (!foodGrocery.food || !foodGrocery.upc) {
+    if (!foodGrocery.food || !foodGrocery.upcFood) {
         throw new Error('400');
     }
 

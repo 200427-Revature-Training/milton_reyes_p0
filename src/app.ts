@@ -6,6 +6,7 @@ import { brandRouter } from './router/brandRouter';
 import { categoryRouter } from './router/categoryRouter';
 import { retailerRouter } from './router/retailerRouter';
 import { storageRouter } from './router/storageRouter';
+import { foodGroceryRouter } from './router/foodGroceryRouter';
 
 
 const app = express();
@@ -28,6 +29,7 @@ app.use('/brands', brandRouter);
 app.use('/categories', categoryRouter);
 app.use('/retailers', retailerRouter);
 app.use('/storages', storageRouter);
+app.use('/foodGroceries', foodGroceryRouter);
 
 process.on('unhandledRejection', () => {
     db.end().then(() => {
