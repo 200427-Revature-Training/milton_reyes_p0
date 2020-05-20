@@ -11,12 +11,14 @@ export function getFoodGroceryByUpcFood(upcFood: string): Promise<FoodGrocery> {
 
 export function saveFoodGrocery(foodGrocery: any): Promise<FoodGrocery> {
 
+    console.log("-------service saveFG foodGrocery");
     console.log(foodGrocery);
 
+    // make sure same case as column name from any obj (foodGrocery)
     const newFoodGrocery = new FoodGrocery(
-        foodGrocery.food, foodGrocery.upcFood, foodGrocery.notes);
+        foodGrocery.food, foodGrocery.upc_food, foodGrocery.notes);
 
-    if(foodGrocery.food && foodGrocery.upcFood) {
+    if(foodGrocery.food && foodGrocery.upc_food) {
         return foodGroceryDao.saveFoodGrocery(newFoodGrocery);
     } else {
         // TODO: We should fail here, probably issue some kind of 400

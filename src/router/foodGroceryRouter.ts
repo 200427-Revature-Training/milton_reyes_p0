@@ -45,6 +45,7 @@ foodGroceryRouter.get('/:upcFood', (request, response, next) => {
 */
 foodGroceryRouter.post('', (request, response, next) => {
     const foodGrocery = request.body;
+    console.log("----------Post request foodGrocery");
     foodGroceryService.saveFoodGrocery(foodGrocery)
         .then(newFoodGrocery => {
             response.status(201);

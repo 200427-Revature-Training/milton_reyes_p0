@@ -25,9 +25,10 @@ export function getFoodGroceryByUpcFood(upcFood: string): Promise<FoodGrocery> {
 export function saveFoodGrocery(foodGrocery: FoodGrocery): Promise<FoodGrocery> {
     const sql = `INSERT INTO food_groceries (food,upc_food,notes) VALUES ($1, $2, $3) RETURNING *`;
 
-    return db.query<FoodGroceryRow>(sql, [
-        foodGrocery.food, foodGrocery.upcFood, foodGrocery.notes
-    ]).then(result => result.rows.map(row => FoodGrocery.from(row))[0]);
+    const params = [foodGrocery.food, foodGrocery.upcFood, foodGrocery.notes];
+    return db.query<FoodGroceryRow>(sql, params).then(result =>
+        result.rows.map(row => FoodGrocery.from(row))[0]
+    );
 }
 
 export function patchFoodGrocery(foodGrocery: FoodGrocery): Promise<FoodGrocery> {
