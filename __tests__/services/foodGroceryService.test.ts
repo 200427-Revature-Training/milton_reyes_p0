@@ -58,7 +58,7 @@ describe('saveFoodGrocery', () => {
         // Validate that error was thrown
     });
 
-    test('Input object transformed to Person object', async () => {
+    test('Input object transformed to FoodGrocery object', async () => {
         mockFoodGroceryDao.saveFoodGrocery.mockImplementation(o => o);
 
         const payload = {
