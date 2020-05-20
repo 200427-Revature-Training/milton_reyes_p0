@@ -29,6 +29,7 @@ CREATE TABLE public.products (
 -- ###################################################################
 -- ---------------- DROPPING TABLES LIKE FLIES -----------------
 -- TODO add a Nutrition Facts tables in a future far, far away
+-- TODO add a UPC table with id, upc, brand_id
 
 DROP TABLE IF EXISTS public.foods_recipes cascade;
 DROP TABLE IF EXISTS public.recipes cascade;

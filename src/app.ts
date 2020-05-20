@@ -2,6 +2,7 @@ import express from 'express';
 //import bodyParser from 'body-parser';
 import { db } from './dao/db';
 import { indexRouter } from './router/indexRouter';
+import { groceryRouter } from './router/groceryRouter';
 import { brandRouter } from './router/brandRouter';
 import { categoryRouter } from './router/categoryRouter';
 import { retailerRouter } from './router/retailerRouter';
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
     ? Router Registration
 */
 app.use('', indexRouter);
+app.use('/groceries', groceryRouter);
 app.use('/brands', brandRouter);
 app.use('/categories', categoryRouter);
 app.use('/retailers', retailerRouter);
